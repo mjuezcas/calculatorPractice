@@ -26,10 +26,26 @@ public class CalculatorController {
         return calculatorMethods.subtract(num1, num2);
     }
 
+    @GetMapping("/operation")
+    public ResponseEntity<Double> subtract(Double num1, Double num2, String operation) {
+        // If you want to try this method, you should send the operation method encode otherwise the method will get am empty string
+        // + -> %2A
+        // - -> - (It is the same)
+        // * -> %2B
+        // / -> %2F
+
+        try {
+            return ResponseEntity.ok().body(calculatorMethods.operation(num1, num2, operation));
+        }catch (ArithmeticException ex) {
+            System.out.println("The Arithmetic exception was captured");
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
     @PostMapping("/operation")
     public ResponseEntity<Double> operation(@RequestBody OperationParams params) {
         try {
-            return ResponseEntity.ok().body(calculatorMethods.operation(params));
+            return ResponseEntity.ok().body(calculatorMethods.operation(params.getNum1(), params.getNum2(), params.getOperation()));
         }catch (ArithmeticException ex) {
             System.out.println("The Arithmetic exception was captured");
             return ResponseEntity.badRequest().body(null);

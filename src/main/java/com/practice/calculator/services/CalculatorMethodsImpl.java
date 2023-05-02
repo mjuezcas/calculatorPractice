@@ -19,16 +19,16 @@ public class CalculatorMethodsImpl implements ICalculatorMethods {
     }
 
     @Override
-    public Double operation(OperationParams params) throws ArithmeticException {
-        switch(params.getOperation()){
+    public Double operation(Double num1, Double num2, String operation) throws ArithmeticException {
+        switch(operation){
             case "+":
-                return params.getNum1() + params.getNum2();
+                return num1 + num2;
             case "-":
-                return params.getNum1() - params.getNum2();
+                return num1 - num2;
             case "*":
-                return params.getNum1() * params.getNum2();
+                return num1 * num2;
             case "/":
-                return params.getNum1() / params.getNum2();
+                return num1 / num2;
             default:
                 System.out.println("You send a operation not allowed");
                 throw new ArithmeticException();

@@ -8,5 +8,5 @@ public interface ICalculatorMethods {
 
     Double subtract(Double num1, Double num2);
 
-    Double operation(OperationParams params) throws ArithmeticException;
+    Double operation(Double num1, Double num2, String operation);
 }
